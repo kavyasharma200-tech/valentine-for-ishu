@@ -98,7 +98,13 @@ const LoveNotes = () => {
 
     const handleAddCompliment = async (e) => {
         e.preventDefault();
-        if (!newCompliment.trim() || !currentUser) return;
+
+        if (!currentUser) {
+            alert("You must be logged in!");
+            return;
+        }
+
+        if (!newCompliment.trim()) return;
 
         try {
             await addDoc(collection(db, 'compliments'), {
@@ -108,20 +114,32 @@ const LoveNotes = () => {
             });
             setNewCompliment('');
             setIsModalOpen(false);
+            alert("Compliment added to the jar! 🍯");
         } catch (error) {
             console.error('Error adding compliment:', error);
+            alert(`Failed to add compliment. Error: ${error.message}`);
         }
     };
 
     const handleVoiceUpload = async (e) => {
         const file = e.target.files[0];
         if (!file) return;
+
+        // Max 10MB for audio
+        if (file.size > 10 * 1024 * 1024) {
+            alert("Audio file too large (max 10MB)");
+            return;
+        }
+
         setNewVoiceNote(prev => ({ ...prev, file }));
     };
 
     const handleSubmitVoiceNote = async (e) => {
         e.preventDefault();
-        if (!newVoiceNote.file || !currentUser) return;
+        if (!newVoiceNote.file || !currentUser) {
+            alert("Please select a file and ensure you are logged in.");
+            return;
+        }
 
         setUploading(true);
         try {
@@ -140,8 +158,10 @@ const LoveNotes = () => {
 
             setNewVoiceNote({ file: null, memory: '' });
             setIsModalOpen(false);
+            alert("Voice note saved! 🎤");
         } catch (error) {
             console.error('Error uploading voice note:', error);
+            alert(`Failed to upload voice note. Error: ${error.message}`);
         }
         setUploading(false);
     };

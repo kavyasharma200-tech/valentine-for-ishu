@@ -81,7 +81,13 @@ const OurSky = () => {
 
     const handleAddStar = async (e) => {
         e.preventDefault();
-        if (!newStar.date.trim() || !newStar.description.trim() || !currentUser) return;
+
+        if (!currentUser) {
+            alert("You must be logged in to add a star!");
+            return;
+        }
+
+        if (!newStar.date.trim() || !newStar.description.trim()) return;
 
         try {
             await addDoc(collection(db, 'starMap'), {
@@ -93,8 +99,10 @@ const OurSky = () => {
 
             setNewStar({ date: '', description: '' });
             setIsModalOpen(false);
+            alert("A new star has been added to our sky! ⭐");
         } catch (error) {
             console.error('Error adding star:', error);
+            alert(`Failed to add star. Error: ${error.message}`);
         }
     };
 

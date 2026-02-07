@@ -72,7 +72,16 @@ const TimeCapsule = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        if (!newMessage.message.trim() || !newMessage.unlockDate || !currentUser) return;
+
+        if (!currentUser) {
+            alert("You must be logged in!");
+            return;
+        }
+
+        if (!newMessage.message.trim() || !newMessage.unlockDate) {
+            alert("Please provide a message and date.");
+            return;
+        }
 
         try {
             await addDoc(collection(db, 'timeCapMessages'), {
@@ -87,8 +96,10 @@ const TimeCapsule = () => {
 
             setNewMessage({ message: '', unlockDate: '', isRecurring: false });
             setIsModalOpen(false);
+            alert("Time Capsule locked successfully! 💌");
         } catch (error) {
             console.error('Error adding message:', error);
+            alert(`Failed to save message. Error: ${error.message}`);
         }
     };
 

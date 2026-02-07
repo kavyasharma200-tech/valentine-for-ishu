@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
 import { HashRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { AuthProvider, useAuth } from './context/AuthContext';
 import { AchievementProvider } from './context/AchievementContext';
@@ -6,8 +7,8 @@ import { AchievementProvider } from './context/AchievementContext';
 // Components
 import Navigation from './components/Navigation';
 import CustomCursor from './components/CustomCursor';
-import FloatingHearts from './components/FloatingHearts';
-import Sparkles from './components/Sparkles';
+import CelestialBackground from './components/CelestialBackground';
+
 import TerminalOverlay from './components/Terminal';
 import AchievementToast from './components/AchievementToast';
 
@@ -30,9 +31,18 @@ const ProtectedRoute = ({ children }) => {
 
   if (loading) {
     return (
-      <div className="loading-screen">
-        <div className="loading-heart">💕</div>
-        <p>Loading our love story...</p>
+      <div className="login-page">
+        <CelestialBackground />
+        <div className="text-center z-10 transition-stellar">
+          <motion.div
+            animate={{ scale: [1, 1.1, 1], opacity: [0.5, 1, 0.5] }}
+            transition={{ duration: 2, repeat: Infinity }}
+            className="login-star-symbol"
+          >
+            ✦
+          </motion.div>
+          <p className="hero-astral-label shimmer-text mt-4">Establishing Secure Connection...</p>
+        </div>
       </div>
     );
   }
@@ -85,9 +95,8 @@ const AppContent = () => {
 
   return (
     <div className="app">
+      <CelestialBackground />
       <CustomCursor />
-      <FloatingHearts />
-      <Sparkles />
       <Navigation />
       <AchievementToast />
 

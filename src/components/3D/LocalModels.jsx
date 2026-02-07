@@ -32,38 +32,38 @@ export const LocalModel = ({ path, onClick }) => {
 
 // Pre-configured models with specific paths and adjustments
 export const RedRose = (props) => (
-    <LocalModel path="/assets/models/piano_rose.glb" {...props} />
+    <LocalModel path="assets/models/piano_rose.glb" {...props} />
 );
 
 export const LoveRing = (props) => (
-    <LocalModel path="/assets/models/543_-_ring.glb" {...props} />
+    <LocalModel path="assets/models/543_-_ring.glb" {...props} />
 );
 
 export const TeddyBears = (props) => (
-    <LocalModel path="/assets/models/teddy_bears.glb" {...props} />
+    <LocalModel path="assets/models/teddy_bears.glb" {...props} />
 );
 
 export const HeartInLove = (props) => (
-    <LocalModel path="/assets/models/heart_in_love.glb" {...props} />
+    <LocalModel path="assets/models/heart_in_love.glb" {...props} />
 );
 
 export const LoveBalloon = (props) => (
-    <LocalModel path="/assets/models/love_balloon.glb" {...props} />
+    <LocalModel path="assets/models/love_balloon.glb" {...props} />
 );
 
 export const LoveAnil = (props) => (
-    <LocalModel path="/assets/models/love_-_anil.glb" {...props} />
+    <LocalModel path="assets/models/love_-_anil.glb" {...props} />
 );
 
 export const LoveLotus = (props) => (
-    <LocalModel path="/assets/models/love_lotus.glb" {...props} />
+    <LocalModel path="assets/models/love_lotus.glb" {...props} />
 );
 
 // Preload models for better performance
-useGLTF.preload("/assets/models/piano_rose.glb");
-useGLTF.preload("/assets/models/543_-_ring.glb");
-useGLTF.preload("/assets/models/teddy_bears.glb");
-useGLTF.preload("/assets/models/heart_in_love.glb");
-useGLTF.preload("/assets/models/love_balloon.glb");
-useGLTF.preload("/assets/models/love_lotus.glb");
-useGLTF.preload("/assets/models/love_-_anil.glb");
+useGLTF.preload("assets/models/piano_rose.glb");
+useGLTF.preload("assets/models/543_-_ring.glb");
+useGLTF.preload("assets/models/teddy_bears.glb");
+useGLTF.preload("assets/models/heart_in_love.glb");
+useGLTF.preload("assets/models/love_balloon.glb");
+useGLTF.preload("assets/models/love_lotus.glb");
+useGLTF.preload("assets/models/love_-_anil.glb");

@@ -52,11 +52,22 @@ const Memories = () => {
         const files = Array.from(e.target.files);
         if (files.length === 0) return;
 
+        if (!currentUser) {
+            alert("You must be logged in to upload images!");
+            return;
+        }
+
         setUploading(true);
         const uploadedUrls = [];
 
         for (const file of files) {
             try {
+                // Validate file size (max 5MB)
+                if (file.size > 5 * 1024 * 1024) {
+                    alert(`File ${file.name} is too large (max 5MB)`);
+                    continue;
+                }
+
                 const fileName = `${Date.now()}-${file.name}`;
                 const storageRef = ref(storage, `images/memories/${fileName}`);
                 await uploadBytes(storageRef, file);
@@ -64,6 +75,7 @@ const Memories = () => {
                 uploadedUrls.push(url);
             } catch (error) {
                 console.error('Upload error:', error);
+                alert(`Failed to upload ${file.name}. Error: ${error.message}`);
             }
         }
 
@@ -76,7 +88,16 @@ const Memories = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        if (!newMemory.text.trim() || !currentUser) return;
+
+        if (!currentUser) {
+            alert("You must be logged in to add memories!");
+            return;
+        }
+
+        if (!newMemory.text.trim()) {
+            alert("Please write a description for your memory.");
+            return;
+        }
 
         try {
             await addDoc(collection(db, 'memories'), {
@@ -94,8 +115,10 @@ const Memories = () => {
 
             setNewMemory({ text: '', date: new Date().toISOString().split('T')[0], images: [] });
             setIsModalOpen(false);
+            alert("Memory added successfully! 💕");
         } catch (error) {
             console.error('Error adding memory:', error);
+            alert(`Failed to save memory. Error: ${error.message}`);
         }
     };
 

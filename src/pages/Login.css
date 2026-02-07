@@ -4,260 +4,166 @@
     align-items: center;
     justify-content: center;
     padding: 2rem;
-    background: linear-gradient(135deg, #FFF0F5 0%, #FFE4EC 50%, #FFF8F0 100%);
+    background-color: transparent;
     position: relative;
     overflow: hidden;
 }
 
-.login-background {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    pointer-events: none;
-    overflow: hidden;
-}
-
-.floating-heart {
-    position: absolute;
-    bottom: -50px;
-    animation: floatUp 10s linear infinite;
-    opacity: 0.4;
-}
-
-@keyframes floatUp {
-    0% {
-        opacity: 0;
-        transform: translateY(0) rotate(0deg);
-    }
-
-    10% {
-        opacity: 0.4;
-    }
-
-    90% {
-        opacity: 0.4;
-    }
-
-    100% {
-        opacity: 0;
-        transform: translateY(-100vh) rotate(360deg);
-    }
-}
-
-.login-container {
+.login-cosmic-portal {
     position: relative;
     width: 100%;
-    max-width: 420px;
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(20px);
-    border-radius: 2rem;
-    padding: 2.5rem;
-    box-shadow: 0 20px 60px rgba(255, 105, 180, 0.2),
-        0 0 0 1px rgba(255, 182, 193, 0.3);
-}
-
-.login-header {
+    max-width: 500px;
+    padding: 100px 60px;
+    background: rgba(2, 6, 23, 0.4);
+    backdrop-filter: blur(50px);
+    -webkit-backdrop-filter: blur(50px);
+    border: 1px solid rgba(6, 182, 212, 0.15);
+    box-shadow: 0 50px 100px rgba(0, 0, 0, 0.8);
+    z-index: 10;
     text-align: center;
-    margin-bottom: 2rem;
 }
 
-.login-logo {
-    font-size: 4rem;
-    margin-bottom: 1rem;
+.login-cosmic-portal::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    background: linear-gradient(45deg, transparent, var(--aurora-cyan), transparent);
+    border-radius: inherit;
+    z-index: -1;
+    filter: blur(10px);
+    opacity: 0.3;
 }
 
-.login-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 2rem;
-    color: #1A1A2E;
-    margin-bottom: 0.5rem;
+.login-header-celestial {
+    margin-bottom: 60px;
 }
 
-.login-subtitle {
-    color: #718096;
-    font-size: 1rem;
+.login-star-symbol {
+    font-family: var(--font-display);
+    font-size: 5rem;
+    font-weight: 900;
+    color: var(--aurora-cyan);
+    margin-bottom: 25px;
+    display: block;
 }
 
-/* Form */
+.login-title-celestial {
+    font-family: var(--font-display);
+    font-size: 3.5rem;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 15px;
+}
+
+.login-subtitle-stardust {
+    font-family: var(--font-modern);
+    font-size: 0.7rem;
+    letter-spacing: 0.6em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+}
+
+/* Cosmic Form Components */
 .login-form {
     display: flex;
     flex-direction: column;
-    gap: 1.25rem;
+    gap: 35px;
 }
 
-.form-group {
+.form-group-cosmic {
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
+    gap: 15px;
+    text-align: left;
 }
 
-.form-label {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-weight: 500;
-    color: #DC143C;
-    font-size: 0.9rem;
+.label-gold {
+    font-family: var(--font-modern);
+    font-size: 0.8rem;
+    letter-spacing: 0.2em;
+    color: var(--aurora-cyan);
+    text-transform: uppercase;
 }
 
-.form-input {
+.input-stardust {
     width: 100%;
-    padding: 0.875rem 1rem;
-    border: 2px solid #FFB6C1;
-    border-radius: 0.75rem;
-    font-size: 1rem;
-    font-family: inherit;
-    transition: all 0.3s ease;
-    background: white;
-}
-
-.form-input:focus {
-    outline: none;
-    border-color: #FF69B4;
-    box-shadow: 0 0 0 4px rgba(255, 105, 180, 0.15);
-}
-
-.form-input::placeholder {
-    color: #C4B5C0;
-}
-
-.password-wrapper {
-    position: relative;
-}
-
-.password-wrapper .form-input {
-    padding-right: 45px;
-}
-
-.password-toggle {
-    position: absolute;
-    right: 12px;
-    top: 50%;
-    transform: translateY(-50%);
-    background: none;
+    padding: 15px 0;
+    background: transparent;
     border: none;
-    color: #FF69B4;
-    cursor: pointer;
-    padding: 5px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: color 0.3s ease;
-}
-
-.password-toggle:hover {
-    color: #DC143C;
-}
-
-/* Error Message */
-.error-message {
-    background: rgba(220, 53, 69, 0.1);
-    color: #DC143C;
-    padding: 0.75rem 1rem;
-    border-radius: 0.5rem;
-    font-size: 0.9rem;
-    text-align: center;
-    border: 1px solid rgba(220, 53, 69, 0.2);
-}
-
-/* Submit Button */
-.submit-btn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.75rem;
-    width: 100%;
-    padding: 1rem;
-    background: linear-gradient(135deg, #FF69B4 0%, #DC143C 50%, #FF1493 100%);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     color: white;
+    font-family: var(--font-modern);
+    font-size: 1.1rem;
+    font-weight: 200;
+    transition: var(--transition-stellar);
+    outline: none;
+}
+
+.input-stardust:focus {
+    border-bottom-color: var(--aurora-cyan);
+    padding-left: 10px;
+}
+
+.btn-celestial-access {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 22px;
+    background: var(--aurora-cyan);
+    color: var(--nebula-deep);
     border: none;
-    border-radius: 0.75rem;
+    font-family: var(--font-modern);
     font-size: 1rem;
-    font-weight: 600;
+    font-weight: 800;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
     cursor: pointer;
-    transition: all 0.3s ease;
-    margin-top: 0.5rem;
+    transition: var(--transition-stellar);
+    margin-top: 20px;
 }
 
-.submit-btn:hover:not(:disabled) {
-    transform: translateY(-2px);
-    box-shadow: 0 10px 30px rgba(255, 105, 180, 0.4);
+.btn-celestial-access:hover:not(:disabled) {
+    background: white;
+    color: var(--nebula-deep);
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(6, 182, 212, 0.4);
 }
 
-.submit-btn:disabled {
-    opacity: 0.7;
-    cursor: not-allowed;
+.login-switch-celestial {
+    margin-top: 40px;
+    font-family: var(--font-modern);
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    letter-spacing: 0.1em;
 }
 
-.loading-spinner {
-    animation: spin 1s linear infinite;
-    font-size: 1.5rem;
-}
-
-@keyframes spin {
-    from {
-        transform: rotate(0deg);
-    }
-
-    to {
-        transform: rotate(360deg);
-    }
-}
-
-/* Switch */
-.login-switch {
-    text-align: center;
-    margin-top: 1.5rem;
-    font-size: 0.95rem;
-    color: #718096;
-}
-
-.switch-btn {
+.switch-btn-gold {
     background: none;
     border: none;
-    color: #FF69B4;
+    color: var(--aurora-cyan);
     font-weight: 600;
     cursor: pointer;
-    margin-left: 0.5rem;
-    transition: color 0.3s ease;
-}
-
-.switch-btn:hover {
-    color: #DC143C;
+    margin-left: 8px;
     text-decoration: underline;
 }
 
-/* Note */
-.login-note {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
-    margin-top: 1.5rem;
-    padding-top: 1.5rem;
-    border-top: 1px solid rgba(255, 182, 193, 0.3);
-    font-size: 0.85rem;
-    color: #FF69B4;
+.login-auth-footer {
+    margin-top: 60px;
+    padding-top: 40px;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    font-size: 0.6rem;
+    color: rgba(255, 255, 255, 0.15);
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
 }
 
-/* Responsive */
 @media (max-width: 480px) {
-    .login-page {
-        padding: 1rem;
+    .login-cosmic-portal {
+        padding: 60px 30px;
     }
 
-    .login-container {
-        padding: 2rem 1.5rem;
-        border-radius: 1.5rem;
-    }
-
-    .login-logo {
-        font-size: 3rem;
-    }
-
-    .login-title {
-        font-size: 1.75rem;
+    .login-title-celestial {
+        font-size: 2.8rem;
     }
 }

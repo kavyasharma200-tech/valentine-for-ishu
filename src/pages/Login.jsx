@@ -1,23 +1,19 @@
 import React, { useState } from 'react';
-import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
-import { Heart, Mail, Lock, Eye, EyeOff, LogIn, UserPlus } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
+import { motion } from 'framer-motion';
+import { Star } from 'lucide-react';
 import './Login.css';
 
 const Login = () => {
+    const [isLogin, setIsLogin] = useState(true);
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [error, setError] = useState('');
+    const [loading, setLoading] = useState(false);
+
     const navigate = useNavigate();
     const { login, signup } = useAuth();
-    const [isLogin, setIsLogin] = useState(true);
-    const [showPassword, setShowPassword] = useState(false);
-    const [loading, setLoading] = useState(false);
-    const [error, setError] = useState('');
-
-    const [formData, setFormData] = useState({
-        email: '',
-        password: '',
-        name: ''
-    });
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -26,186 +22,76 @@ const Login = () => {
 
         try {
             if (isLogin) {
-                await login(formData.email, formData.password);
+                await login(email, password);
             } else {
-                await signup(formData.email, formData.password, formData.name);
+                await signup(email, password);
             }
-            navigate('/');
-        } catch (error) {
-            console.error('Auth error:', error);
-            setError(
-                error.code === 'auth/invalid-email' ? 'Invalid email address' :
-                    error.code === 'auth/user-not-found' ? 'No account found with this email' :
-                        error.code === 'auth/wrong-password' ? 'Incorrect password' :
-                            error.code === 'auth/email-already-in-use' ? 'Email already in use' :
-                                error.code === 'auth/weak-password' ? 'Password should be at least 6 characters' :
-                                    'An error occurred. Please try again.'
-            );
+            navigate('/valentine-for-ishu/');
+        } catch (err) {
+            setError(err.message || 'Failed to authenticate');
+        } finally {
+            setLoading(false);
         }
-        setLoading(false);
-    };
-
-    const handleChange = (e) => {
-        setFormData(prev => ({
-            ...prev,
-            [e.target.name]: e.target.value
-        }));
     };
 
     return (
         <div className="login-page">
-            <div className="login-background">
-                {[...Array(20)].map((_, i) => (
-                    <span
-                        key={i}
-                        className="floating-heart"
-                        style={{
-                            left: `${Math.random() * 100}%`,
-                            animationDelay: `${Math.random() * 5}s`,
-                            fontSize: `${16 + Math.random() * 24}px`
-                        }}
-                    >
-                        💕
-                    </span>
-                ))}
-            </div>
+            <div className="universe-bg" />
+            <div className="nebula-layer" />
 
             <motion.div
-                className="login-container"
+                className="login-cosmic-portal"
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5 }}
+                transition={{ duration: 1.5, ease: [0.19, 1, 0.22, 1] }}
             >
-                <div className="login-header">
-                    <motion.div
-                        className="login-logo"
-                        animate={{ scale: [1, 1.1, 1] }}
-                        transition={{ repeat: Infinity, duration: 2 }}
-                    >
-                        💕
-                    </motion.div>
-                    <h1 className="login-title">
-                        {isLogin ? 'Welcome Back' : 'Join Us'}
-                    </h1>
-                    <p className="login-subtitle">
-                        {isLogin
-                            ? 'Enter our special world'
-                            : 'Create your love account'}
-                    </p>
+                <div className="login-header-celestial">
+                    <span className="login-star-symbol">✦</span>
+                    <h1 className="login-title-celestial">PORTAL</h1>
+                    <p className="login-subtitle-stardust">UNIVERSE ACCESS GRANTED FOR ISHU GUPTA</p>
                 </div>
 
-                <form onSubmit={handleSubmit} className="login-form">
-                    {!isLogin && (
-                        <motion.div
-                            className="form-group"
-                            initial={{ opacity: 0, height: 0 }}
-                            animate={{ opacity: 1, height: 'auto' }}
-                            exit={{ opacity: 0, height: 0 }}
-                        >
-                            <label className="form-label">
-                                <Heart size={16} />
-                                Your Name
-                            </label>
-                            <input
-                                type="text"
-                                name="name"
-                                value={formData.name}
-                                onChange={handleChange}
-                                className="form-input"
-                                placeholder="Kavya or Ishaan"
-                                required={!isLogin}
-                            />
-                        </motion.div>
-                    )}
-
-                    <div className="form-group">
-                        <label className="form-label">
-                            <Mail size={16} />
-                            Email
-                        </label>
+                <form className="login-form" onSubmit={handleSubmit}>
+                    <div className="form-group-cosmic">
+                        <label className="label-gold">User Identifier</label>
                         <input
                             type="email"
-                            name="email"
-                            value={formData.email}
-                            onChange={handleChange}
-                            className="form-input"
-                            placeholder="your@email.com"
+                            className="input-stardust"
+                            placeholder="Enter registry mail"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
                             required
                         />
                     </div>
 
-                    <div className="form-group">
-                        <label className="form-label">
-                            <Lock size={16} />
-                            Password
-                        </label>
-                        <div className="password-wrapper">
-                            <input
-                                type={showPassword ? 'text' : 'password'}
-                                name="password"
-                                value={formData.password}
-                                onChange={handleChange}
-                                className="form-input"
-                                placeholder="••••••••"
-                                required
-                            />
-                            <button
-                                type="button"
-                                className="password-toggle"
-                                onClick={() => setShowPassword(!showPassword)}
-                            >
-                                {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
-                            </button>
-                        </div>
+                    <div className="form-group-cosmic">
+                        <label className="label-gold">Universe Key</label>
+                        <input
+                            type="password"
+                            className="input-stardust"
+                            placeholder="Secure connection key"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                            required
+                        />
                     </div>
 
-                    {error && (
-                        <motion.div
-                            className="error-message"
-                            initial={{ opacity: 0, y: -10 }}
-                            animate={{ opacity: 1, y: 0 }}
-                        >
-                            {error}
-                        </motion.div>
-                    )}
+                    {error && <p className="text-red-500 text-xs text-center font-bold">{error}</p>}
 
-                    <motion.button
-                        type="submit"
-                        className="submit-btn"
-                        disabled={loading}
-                        whileHover={{ scale: 1.02 }}
-                        whileTap={{ scale: 0.98 }}
-                    >
-                        {loading ? (
-                            <span className="loading-spinner">💕</span>
-                        ) : (
-                            <>
-                                {isLogin ? <LogIn size={20} /> : <UserPlus size={20} />}
-                                {isLogin ? 'Enter Our World' : 'Create Account'}
-                            </>
-                        )}
-                    </motion.button>
+                    <button className="btn-celestial-access" type="submit" disabled={loading}>
+                        {loading ? 'CALIBRATING...' : (isLogin ? 'INITIATE JOURNEY' : 'REGISTER ACCESS')}
+                    </button>
                 </form>
 
-                <div className="login-switch">
-                    <span>
-                        {isLogin ? "Don't have an account?" : "Already have an account?"}
-                    </span>
-                    <button
-                        type="button"
-                        className="switch-btn"
-                        onClick={() => {
-                            setIsLogin(!isLogin);
-                            setError('');
-                        }}
-                    >
-                        {isLogin ? 'Sign Up' : 'Log In'}
+                <div className="login-switch-celestial">
+                    {isLogin ? "No registry found?" : "Already registered?"}
+                    <button className="switch-btn-gold" onClick={() => setIsLogin(!isLogin)}>
+                        {isLogin ? 'Request Access' : 'Return to Portal'}
                     </button>
                 </div>
 
-                <div className="login-note">
-                    <Heart size={14} />
-                    <span>This is our private love space</span>
+                <div className="login-auth-footer">
+                    Strictly for Authorized Perspective: Constellation 01 / ISHU.
                 </div>
             </motion.div>
         </div>
