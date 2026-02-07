@@ -1,0 +1,486 @@
+.timecapsule-page {
+    padding: 100px 2rem 2rem;
+    min-height: 100vh;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.page-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.page-title {
+    font-size: clamp(2rem, 4vw, 2.5rem);
+    color: #1A1A2E;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.page-subtitle {
+    color: #718096;
+    margin-top: 0.5rem;
+}
+
+.timecapsule-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+}
+
+/* Calendar Section */
+.calendar-section {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 1.5rem;
+    padding: 1.5rem;
+    box-shadow: 0 10px 40px rgba(255, 105, 180, 0.15);
+    border: 1px solid rgba(255, 182, 193, 0.3);
+}
+
+.calendar-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
+}
+
+.calendar-nav {
+    width: 36px;
+    height: 36px;
+    border: none;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #FFB6C1, #FF69B4);
+    color: white;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.calendar-nav:hover {
+    transform: scale(1.1);
+    box-shadow: 0 5px 15px rgba(255, 105, 180, 0.4);
+}
+
+.calendar-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    color: #1A1A2E;
+}
+
+.calendar-weekdays {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.weekday {
+    text-align: center;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #718096;
+    padding: 0.5rem 0;
+}
+
+.calendar-days {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 0.5rem;
+}
+
+.calendar-day {
+    aspect-ratio: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.75rem;
+    font-size: 0.9rem;
+    color: #4A5568;
+    background: rgba(255, 240, 245, 0.5);
+    cursor: default;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.calendar-day.empty {
+    background: transparent;
+}
+
+.calendar-day.today {
+    background: linear-gradient(135deg, #FF69B4, #FF1493);
+    color: white;
+    font-weight: 600;
+}
+
+.calendar-day.has-message {
+    border: 2px solid #FFB6C1;
+}
+
+.calendar-day.has-message.unlocked {
+    cursor: pointer;
+    border-color: #FF69B4;
+    background: rgba(255, 105, 180, 0.1);
+}
+
+.calendar-day.has-message.unlocked:hover {
+    transform: scale(1.1);
+    box-shadow: 0 5px 15px rgba(255, 105, 180, 0.3);
+}
+
+.day-number {
+    font-size: 0.9rem;
+}
+
+.message-indicator {
+    position: absolute;
+    bottom: 2px;
+    font-size: 0.7rem;
+}
+
+/* Messages Section */
+.messages-section {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.messages-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.messages-header h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    color: #1A1A2E;
+}
+
+.messages-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    max-height: 500px;
+    overflow-y: auto;
+    padding-right: 0.5rem;
+}
+
+.message-card {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 1.25rem;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 1rem;
+    box-shadow: 0 5px 20px rgba(255, 105, 180, 0.1);
+    border: 1px solid rgba(255, 182, 193, 0.3);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.message-card.locked {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+.message-card.unlocked:hover {
+    transform: translateX(5px);
+    box-shadow: 0 10px 30px rgba(255, 105, 180, 0.2);
+    border-color: #FF69B4;
+}
+
+.message-icon {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.message-card.unlocked .message-icon {
+    background: linear-gradient(135deg, #FF69B4, #FF1493);
+    color: white;
+}
+
+.message-card.locked .message-icon {
+    background: rgba(113, 128, 150, 0.2);
+    color: #718096;
+}
+
+.message-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.message-title {
+    font-weight: 600;
+    color: #1A1A2E;
+    font-size: 0.95rem;
+}
+
+.message-date,
+.message-countdown {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.8rem;
+    color: #718096;
+}
+
+.message-countdown {
+    color: #FF69B4;
+}
+
+.message-preview {
+    animation: pulse 1.5s ease-in-out infinite;
+}
+
+/* Modal Styles */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(5px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 500;
+    padding: 1rem;
+}
+
+.modal-content {
+    position: relative;
+    background: white;
+    border-radius: 1.5rem;
+    padding: 2rem;
+    max-width: 500px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+.modal-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    width: 40px;
+    height: 40px;
+    border: none;
+    background: rgba(255, 105, 180, 0.1);
+    color: #FF1493;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.modal-close:hover {
+    background: #FF1493;
+    color: white;
+}
+
+.modal-header {
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.modal-icon {
+    color: #FF69B4;
+    margin-bottom: 0.5rem;
+}
+
+.modal-header h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    color: #1A1A2E;
+    margin-bottom: 0.5rem;
+}
+
+.modal-header p {
+    color: #718096;
+    font-size: 0.95rem;
+}
+
+/* Message Form */
+.message-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.label {
+    font-weight: 500;
+    color: #DC143C;
+}
+
+.input {
+    padding: 0.75rem 1rem;
+    border: 2px solid #FFB6C1;
+    border-radius: 0.75rem;
+    font-size: 1rem;
+    font-family: inherit;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.input:focus {
+    outline: none;
+    border-color: #FF69B4;
+    box-shadow: 0 0 0 4px rgba(255, 105, 180, 0.15);
+}
+
+.textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.checkbox-group {
+    flex-direction: row;
+}
+
+.checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    cursor: pointer;
+}
+
+.checkbox-label input {
+    width: 20px;
+    height: 20px;
+    accent-color: #FF69B4;
+}
+
+.checkbox-text {
+    color: #4A5568;
+}
+
+/* Message Reveal Modal */
+.message-reveal-modal {
+    background: linear-gradient(135deg, #FFF0F5, #FFE4EC);
+    text-align: center;
+    border: 2px solid rgba(255, 105, 180, 0.3);
+}
+
+.message-reveal {
+    position: relative;
+}
+
+.reveal-sparkles {
+    margin-bottom: 1rem;
+}
+
+.sparkle-icon {
+    width: 50px;
+    height: 50px;
+    color: #FFD700;
+    animation: sparkle 2s ease-in-out infinite;
+}
+
+@keyframes sparkle {
+
+    0%,
+    100% {
+        transform: scale(1) rotate(0deg);
+    }
+
+    50% {
+        transform: scale(1.2) rotate(180deg);
+    }
+}
+
+.reveal-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    color: #DC143C;
+    margin-bottom: 0.5rem;
+}
+
+.reveal-date {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    color: #718096;
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+}
+
+.reveal-message {
+    background: white;
+    padding: 2rem;
+    border-radius: 1rem;
+    box-shadow: 0 5px 20px rgba(255, 105, 180, 0.15);
+    margin-bottom: 1.5rem;
+}
+
+.reveal-message p {
+    font-size: 1.2rem;
+    color: #1A1A2E;
+    line-height: 1.7;
+}
+
+.reveal-hearts {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.reveal-heart {
+    font-size: 1.5rem;
+    animation: floatHeart 2s ease-in-out infinite;
+}
+
+@keyframes floatHeart {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+    .timecapsule-content {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .timecapsule-page {
+        padding: 90px 1rem 100px;
+    }
+
+    .calendar-section {
+        padding: 1rem;
+    }
+
+    .calendar-day {
+        font-size: 0.8rem;
+    }
+
+    .modal-content {
+        padding: 1.5rem;
+    }
+}

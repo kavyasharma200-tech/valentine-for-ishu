@@ -1,0 +1,437 @@
+.dashboard-page {
+    padding: 100px 2rem 2rem;
+    min-height: 100vh;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.page-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.page-title {
+    font-size: clamp(2rem, 4vw, 2.5rem);
+    color: #1A1A2E;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.page-subtitle {
+    color: #718096;
+    margin-top: 0.5rem;
+}
+
+.section-title {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    color: #1A1A2E;
+    margin-bottom: 1.5rem;
+}
+
+.section-title svg {
+    color: #FF69B4;
+}
+
+/* Stats Grid */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+}
+
+.stat-card {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.5rem;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 1.5rem;
+    box-shadow: 0 10px 30px rgba(255, 105, 180, 0.1);
+    border: 1px solid rgba(255, 182, 193, 0.3);
+    transition: all 0.3s ease;
+}
+
+.stat-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 40px rgba(255, 105, 180, 0.15);
+}
+
+.stat-icon {
+    width: 55px;
+    height: 55px;
+    border-radius: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    flex-shrink: 0;
+}
+
+.stat-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.stat-value {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #1A1A2E;
+    line-height: 1;
+}
+
+.stat-label {
+    font-size: 0.85rem;
+    color: #718096;
+    margin-top: 0.25rem;
+}
+
+/* Countdown Section */
+.countdown-section {
+    margin-bottom: 3rem;
+}
+
+.countdown-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
+.countdown-card {
+    position: relative;
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 1.5rem;
+    box-shadow: 0 10px 40px rgba(255, 105, 180, 0.15);
+    border: 2px solid rgba(255, 182, 193, 0.3);
+    text-align: center;
+    overflow: hidden;
+    transition: all 0.4s ease;
+}
+
+.countdown-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--accent-color);
+    box-shadow: 0 20px 50px rgba(255, 105, 180, 0.2);
+}
+
+.countdown-emoji {
+    font-size: 3rem;
+    margin-bottom: 0.75rem;
+    animation: bounce 2s ease-in-out infinite;
+}
+
+@keyframes bounce {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+.countdown-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    color: #1A1A2E;
+    margin-bottom: 1.5rem;
+}
+
+.countdown-timer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.time-unit {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 50px;
+}
+
+.time-value {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--accent-color);
+    line-height: 1;
+    font-family: 'Fira Code', monospace;
+}
+
+.time-value.seconds {
+    animation: pulse 1s ease-in-out infinite;
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.7;
+    }
+}
+
+.time-label {
+    font-size: 0.75rem;
+    color: #718096;
+    text-transform: uppercase;
+    margin-top: 0.25rem;
+}
+
+.time-separator {
+    font-size: 1.5rem;
+    color: #FFB6C1;
+    margin-top: -15px;
+}
+
+.countdown-glow {
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255, 105, 180, 0.1) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+/* Achievements Section */
+.achievements-section {
+    margin-bottom: 3rem;
+}
+
+.achievement-count {
+    margin-left: auto;
+    font-size: 0.9rem;
+    color: #FF69B4;
+    background: rgba(255, 105, 180, 0.1);
+    padding: 0.25rem 0.75rem;
+    border-radius: 1rem;
+}
+
+.achievements-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1rem;
+}
+
+.achievement-card {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 1.25rem;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 1rem;
+    box-shadow: 0 5px 20px rgba(255, 105, 180, 0.1);
+    border: 1px solid rgba(255, 182, 193, 0.3);
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.achievement-card.locked {
+    opacity: 0.6;
+    background: rgba(200, 200, 200, 0.2);
+}
+
+.achievement-card.unlocked:hover {
+    transform: translateX(5px);
+    box-shadow: 0 10px 30px rgba(255, 105, 180, 0.2);
+    border-color: #FF69B4;
+}
+
+.achievement-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.achievement-card.unlocked .achievement-icon {
+    background: linear-gradient(135deg, #FFD700, #FFA500);
+    box-shadow: 0 5px 15px rgba(255, 215, 0, 0.4);
+}
+
+.achievement-card.locked .achievement-icon {
+    background: rgba(113, 128, 150, 0.2);
+    color: #718096;
+}
+
+.achievement-emoji {
+    font-size: 1.5rem;
+}
+
+.achievement-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.achievement-name {
+    font-weight: 600;
+    color: #1A1A2E;
+    font-size: 0.95rem;
+}
+
+.achievement-desc {
+    font-size: 0.8rem;
+    color: #718096;
+    margin-top: 0.2rem;
+}
+
+.achievement-badge {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    width: 28px;
+    height: 28px;
+    background: linear-gradient(135deg, #FF69B4, #FF1493);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    box-shadow: 0 3px 10px rgba(255, 105, 180, 0.4);
+}
+
+/* Milestones Timeline */
+.milestones-section {
+    margin-bottom: 2rem;
+}
+
+.timeline {
+    position: relative;
+    padding-left: 40px;
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    left: 15px;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: linear-gradient(to bottom, #FF69B4, #DC143C, #FFB6C1);
+    border-radius: 2px;
+}
+
+.timeline-item {
+    position: relative;
+    margin-bottom: 2rem;
+    padding-left: 30px;
+}
+
+.timeline-item:last-child {
+    margin-bottom: 0;
+}
+
+.timeline-marker {
+    position: absolute;
+    left: -33px;
+    top: 0;
+    width: 40px;
+    height: 40px;
+    background: white;
+    border: 3px solid #FF69B4;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    box-shadow: 0 5px 15px rgba(255, 105, 180, 0.3);
+}
+
+.timeline-content {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 1.25rem 1.5rem;
+    border-radius: 1rem;
+    box-shadow: 0 5px 20px rgba(255, 105, 180, 0.1);
+    border: 1px solid rgba(255, 182, 193, 0.3);
+}
+
+.timeline-year {
+    display: inline-block;
+    font-weight: 600;
+    color: #FF1493;
+    font-size: 0.9rem;
+    margin-bottom: 0.25rem;
+}
+
+.timeline-event {
+    color: #4A5568;
+    font-size: 1rem;
+    margin: 0;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .dashboard-page {
+        padding: 90px 1rem 100px;
+    }
+
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .stat-card {
+        padding: 1rem;
+    }
+
+    .stat-icon {
+        width: 45px;
+        height: 45px;
+    }
+
+    .stat-value {
+        font-size: 1.4rem;
+    }
+
+    .countdown-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .countdown-card {
+        padding: 1.5rem;
+    }
+
+    .time-value {
+        font-size: 1.5rem;
+    }
+
+    .time-unit {
+        min-width: 40px;
+    }
+
+    .achievements-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .timeline {
+        padding-left: 30px;
+    }
+
+    .timeline::before {
+        left: 10px;
+    }
+
+    .timeline-marker {
+        left: -23px;
+        width: 30px;
+        height: 30px;
+        font-size: 1rem;
+    }
+}

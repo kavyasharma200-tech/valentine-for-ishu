@@ -1,0 +1,87 @@
+.achievement-toast {
+    position: fixed;
+    top: 90px;
+    right: 20px;
+    background: linear-gradient(135deg, #FF69B4 0%, #DC143C 50%, #FF1493 100%);
+    color: white;
+    padding: 1rem 1.5rem;
+    border-radius: 1rem;
+    box-shadow: 0 10px 40px rgba(255, 105, 180, 0.4),
+        0 0 60px rgba(255, 105, 180, 0.3);
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    z-index: 1000;
+    overflow: hidden;
+    min-width: 300px;
+}
+
+.achievement-icon {
+    font-size: 2.5rem;
+    animation: bounce 0.6s ease infinite;
+}
+
+@keyframes bounce {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-5px);
+    }
+}
+
+.achievement-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+}
+
+.achievement-label {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    opacity: 0.9;
+}
+
+.achievement-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.achievement-desc {
+    font-size: 0.8rem;
+    opacity: 0.85;
+}
+
+.achievement-glow {
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, transparent 50%);
+    animation: rotate 3s linear infinite;
+    pointer-events: none;
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@media (max-width: 480px) {
+    .achievement-toast {
+        right: 10px;
+        left: 10px;
+        min-width: auto;
+    }
+}
