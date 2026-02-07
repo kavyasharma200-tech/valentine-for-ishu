@@ -8,6 +8,7 @@ import { AchievementProvider } from './context/AchievementContext';
 import Navigation from './components/Navigation';
 import CustomCursor from './components/CustomCursor';
 import CelestialBackground from './components/CelestialBackground';
+import FirebaseStatus from './components/FirebaseStatus';
 
 import TerminalOverlay from './components/Terminal';
 import AchievementToast from './components/AchievementToast';
@@ -99,6 +100,7 @@ const AppContent = () => {
       <CustomCursor />
       <Navigation />
       <AchievementToast />
+      <FirebaseStatus />
 
       <main className="main-content">
         <Routes>
